@@ -43,12 +43,6 @@ namespace HHSAdvAvalonia.ViewModels
             // ★★★ サービスの変更を監視し、Viewに通知（プロキシ） ★★★
             // これにより、PreferencesでFontSizeが変更されると、
             // MainWindowのUIにバインドされた ApplicationFontSize も更新される。
-            //SettingsService.WhenAnyValue(x => x.FontSize).Subscribe(size =>
-            //    this.RaisePropertyChanged(nameof(ApplicationFontSize)));
-            //SettingsService.WhenAnyValue(x => x.ThemeMode).Subscribe(mode =>
-            //    this.RaisePropertyChanged(nameof(ApplicationThemeMode)));
-            ZSystem.Instance.Properties.Attrs.WhenAnyValue(x => x.FontSize).Subscribe(size => ApplicationFontSize = size);
-            ZSystem.Instance.Properties.Attrs.WhenAnyValue(x => x.ThemeMode).Subscribe(mode => ApplicationThemeMode = mode);
             SettingsService.WhenAnyValue(x => x.ThemeMode).Subscribe(mode =>
                 ApplicationThemeMode = mode);
             SettingsService.WhenAnyValue(x => x.FontSize).Subscribe(size =>

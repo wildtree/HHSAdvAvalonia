@@ -16,7 +16,7 @@ namespace HHSAdvAvalonia
 
             public string AboutText =>
 @"High High School Adventure
-Version 1.0.0
+Version 1.0.1
 
 PalmOS version: hiro © 2002-2004
 Android version: hiro © 2011-2025

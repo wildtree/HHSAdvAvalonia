@@ -58,9 +58,9 @@
         <RadioButton x:Name="Option2" Content="RadioButton" GroupName="Selection" Tag="2" Margin="8,4"/>
         <RadioButton x:Name="Option3" Content="RadioButton" GroupName="Selection" Tag="3" Margin="8,4"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-          <Button x:Name="Okay" Content="了解" Width="80" IsDefault="True" Margin="5"
+          <Button x:Name="Okay" Content="了解" HorizontalContentAlignment="Center" Width="80" IsDefault="True" Margin="5"
                   Click="Okay_Clicked"/>
-          <Button x:Name="Cancel" Content="取消" Width="80" IsCancel="True" Margin="5"/>
+          <Button x:Name="Cancel" Content="取消" HorizontalContentAlignment="Center" Width="80" IsCancel="True" Margin="5"/>
         </StackPanel>
       </StackPanel>
     </Grid>

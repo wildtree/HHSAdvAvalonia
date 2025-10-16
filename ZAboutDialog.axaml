@@ -80,6 +80,7 @@
                     Orientation="Horizontal" HorizontalAlignment="Right">
           <Button x:Name="btnOkay"
                   Content="了解"
+                  HorizontalContentAlignment="Center"
                   Width="80"
                   Margin="5"
                   IsDefault="True"

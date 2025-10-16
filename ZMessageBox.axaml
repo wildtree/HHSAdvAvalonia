@@ -68,6 +68,7 @@
         <StackPanel Grid.Row="1">
           <Button x:Name="btnOkay"
                   Content="了解"
+                  HorizontalContentAlignment="Center"
                   HorizontalAlignment="Right"
                   Margin="8,4,8,4"
                   Click="Okay_Clicked"/>
