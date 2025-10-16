@@ -1,0 +1,84 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- スイッチスタイル -->
+    <Style Selector="ToggleButton.ToggleSwitch">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Width="50" Height="25" CornerRadius="12.5"
+                  Background="{TemplateBinding Background}">
+            <Grid>
+              <!-- サム -->
+              <Border x:Name="PART_Knob"
+                      Width="21" Height="21"
+                      CornerRadius="10.5"
+                      Background="White"
+                      HorizontalAlignment="Left"
+                      Margin="2"/>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+      <Setter Property="Background" Value="LightGray"/>
+    </Style>
+
+    <!-- チェック時の見た目 -->
+    <Style Selector="ToggleButton.ToggleSwitch:checked">
+      <Setter Property="Background" Value="MediumSeaGreen"/>
+    </Style>
+    <Style Selector="ToggleButton.ToggleSwitch:checked /template/ Border#PART_Knob">
+      <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
+
+    <!-- 押しボタン風 RadioButton -->
+    <Style Selector="RadioButton.PushButtonStyle">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="PART_Border"
+                        Padding="8"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Foreground="{TemplateBinding Foreground}" 
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      RecognizesAccessKey="True"/>
+                </Border>
+            </ControlTemplate>
+    </Setter>
+
+    <Setter Property="Foreground" Value="{StaticResource PushButton.Foreground.Normal}"/>
+        <Setter Property="Background" Value="{StaticResource PushButton.Background.Normal}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PushButton.Border.Normal}"/>
+    </Style>
+
+    <Style Selector="RadioButton.PushButtonStyle:pointerover">
+        <Setter Property="Background" Value="{StaticResource PushButton.Background.PointerOver}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PushButton.Border.Normal}"/>
+    </Style>
+
+    <Style Selector="RadioButton.PushButtonStyle:pressed">
+        <Setter Property="Background" Value="{StaticResource PushButton.Background.PointerOver}"/>
+    </Style>
+
+    <Style Selector="RadioButton.PushButtonStyle:checked">
+        <Setter Property="Background" Value="{StaticResource PushButton.Background.Checked}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PushButton.Background.Checked}"/>
+        <Setter Property="Foreground" Value="{StaticResource PushButton.Foreground.Checked}"/>
+    </Style>
+
+    <Style Selector="RadioButton.PushButtonStyle:checked:pointerover">
+        <Setter Property="Background" Value="{StaticResource PushButton.Background.Checked}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PushButton.Background.Checked}"/>
+    </Style>
+
+    <Style Selector="RadioButton.PushButtonStyle:disabled">
+        <Setter Property="Background" Value="{DynamicResource ThemeControlLowBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderLowBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundDisabledBrush}"/>
+    </Style>
+</Styles>

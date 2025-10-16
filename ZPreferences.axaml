@@ -1,0 +1,194 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HHSAdvAvalonia"
+        xmlns:vm="clr-namespace:HHSAdvAvalonia.ViewModels"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        xmlns:converters="clr-namespace:HHSAdvAvalonia.Converters"
+        xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+        x:Class="HHSAdvAvalonia.ZPreferences"
+        x:DataType="vm:ZPreferencesViewModel"
+        Title="設定"
+        SizeToContent="WidthAndHeight"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Foreground="{DynamicResource ForegroundBrush}"
+        Background="{DynamicResource BackgroundBrush}"
+        SystemDecorations="None"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        TransparencyLevelHint="AcrylicBlur,Transparent"
+        Opened="OnOpened">
+
+
+  <Grid>
+    <!-- タイトルバー -->
+    <Border Background="{DynamicResource TitleBarBackgroundBrush}"
+            Height="32"
+            CornerRadius="12"
+            VerticalAlignment="Top"
+            PointerPressed="TitleBar_PointerPressed">
+      <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+          <Button Content="—" Width="40" Background="Transparent" BorderThickness="0"
+                  Click="Minimize_Click"/>
+          <Button Content="□" Width="40" Background="Transparent" BorderThickness="0"
+                  Click="Maximize_Click"/>
+          <Button Content="×" Width="40" Background="Transparent" BorderThickness="0"
+                  Click="Close_Click"/>
+        </StackPanel>
+        <TextBlock Text="設定"
+                   Foreground="{DynamicResource TitleBarForegroundBrush}"
+                   VerticalAlignment="Center"
+                   Margin="8,0"/>
+      </DockPanel>
+    </Border>
+
+    <!-- コンテンツ -->
+    <Grid Margin="0,32,0,0" Background="{DynamicResource BackgroundBrush}">
+      <StackPanel>
+
+        <!-- オープニング再生 -->
+        <Grid Margin="16,8,16,8">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="0" Text="オープニングを再生します" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <ToggleButton Grid.Column="1" x:Name="playOpening"
+                        IsChecked="{Binding OpeningRoll}"
+                        Command="{Binding ChangeOpeningRollCommand}"
+                        CommandParameter="{Binding IsChecked, ElementName=playOpening}"
+                        VerticalAlignment="Center"
+                        Background="{DynamicResource BackgroundBrush}"
+                        Classes="ToggleSwitch"/>
+        </Grid>
+
+        <!-- サウンド再生 -->
+        <Grid Margin="16,8,16,8">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="0" Text="音を鳴らします" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <ToggleButton Grid.Column="1" x:Name="playSound"
+                        IsChecked="{Binding PlaySound}"
+                        Command="{Binding ChangePlaySoundCommand}"
+                        CommandParameter="{Binding IsChecked, ElementName=playSound}"
+                        VerticalAlignment="Center"
+                        Background="{DynamicResource BackgroundBrush}"
+                        Classes="ToggleSwitch"/>
+        </Grid>
+
+        <!-- テーマ選択 -->
+        <Grid Margin="8, 16, 8, 8" RowDefinitions="Auto,*">
+          <TextBlock Grid.Row="0"
+            Text="テーマ"
+            Margin="10, 0, 0, -10"
+            Background="{DynamicResource BackgroundBrush}"
+            HorizontalAlignment="Left"
+            Panel.ZIndex="{Binding ZIndexValue}"/>
+          <Border Grid.Row="1"
+            BorderBrush="{DynamicResource ForegroundBrush}"
+            BorderThickness="1"
+            CornerRadius="4"
+            Padding="8, 16, 8, 8">
+              <UniformGrid Rows="1" Columns="3" Margin="4">
+                <RadioButton Content="ライト"
+                            GroupName="ThemeMode"
+                            MinWidth="80"
+                            HorizontalContentAlignment="Center"
+                            x:Name="ThemeLight"
+                            Tag="{x:Static Member=local:ThemeType.Light}"
+                            IsChecked="{Binding ThemeMode,
+                                              Converter={StaticResource EnumToBooleanConverter},
+                                              ConverterParameter={x:Static Member=local:ThemeType.Light}}"
+                            Command="{Binding ChangeThemeModeCommand}"
+                            CommandParameter="{x:Static Member=local:ThemeType.Light}"
+                            Classes="PushButtonStyle"/>
+                <RadioButton Content="ダーク"
+                            GroupName="ThemeMode"
+                            MinWidth="80"
+                            HorizontalContentAlignment="Center"
+                            x:Name="ThemeDark"
+                            Tag="{x:Static Member=local:ThemeType.Dark}"
+                            IsChecked="{Binding ThemeMode,
+                                              Converter={StaticResource EnumToBooleanConverter},
+                                              ConverterParameter={x:Static Member=local:ThemeType.Dark}}"
+                            Command="{Binding ChangeThemeModeCommand}"
+                            CommandParameter="{x:Static Member=local:ThemeType.Dark}"
+                            Classes="PushButtonStyle"/>
+                <RadioButton Content="システム"
+                            GroupName="ThemeMode"
+                            MinWidth="80"
+                            HorizontalContentAlignment="Center"
+                            x:Name="ThemeSystem"
+                            Tag="{x:Static Member=local:ThemeType.System}"
+                            IsChecked="{Binding ThemeMode,
+                                              Converter={StaticResource EnumToBooleanConverter},
+                                              ConverterParameter={x:Static Member=local:ThemeType.System}}"
+                            Command="{Binding ChangeThemeModeCommand}"
+                            CommandParameter="{x:Static Member=local:ThemeType.System}"
+                            Classes="PushButtonStyle"/>
+            </UniformGrid>
+          </Border>
+        </Grid>
+
+        <!-- フォントサイズ選択 -->
+        <StackPanel Margin="20">
+          <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="フォントサイズ"
+                     Foreground="{DynamicResource ForegroundBrush}"
+                     Background="{DynamicResource BackgroundBrush}"/>
+          <UniformGrid Rows="1" Columns="4" HorizontalAlignment="Center">
+            <RadioButton x:Name="FontSizeBtn12" Content="Aあ"
+                 GroupName="FontSizeGroup"
+                 FontSize="12"
+                 MinHeight="48"
+                 MinWidth="60"
+                 HorizontalContentAlignment="Center"
+                 Command="{Binding ChangeFontSizeCommand}"
+                 CommandParameter="{Binding Source='12', Converter={StaticResource StringToIntConverter}}"
+                 IsChecked="{Binding FontSize, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=12}"
+                 Classes="PushButtonStyle"/>
+            <RadioButton x:Name="FontSizeBtn16" Content="Aあ"
+                 GroupName="FontSizeGroup"
+                 FontSize="16"
+                 MinHeight="48"
+                 MinWidth="60"
+                 HorizontalContentAlignment="Center"
+                 Command="{Binding ChangeFontSizeCommand}"
+                 CommandParameter="{Binding Source='16', Converter={StaticResource StringToIntConverter}}"
+                 IsChecked="{Binding FontSize, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=16}"
+                 Classes="PushButtonStyle"/> 
+            <RadioButton x:Name="FontSizeBtn20" Content="Aあ"
+                 GroupName="FontSizeGroup"
+                 FontSize="20"
+                 MinHeight="48"
+                 MinWidth="60"
+                 HorizontalContentAlignment="Center"
+                 Command="{Binding ChangeFontSizeCommand}"
+                 CommandParameter="{Binding Source='20', Converter={StaticResource StringToIntConverter}}"
+                 IsChecked="{Binding FontSize, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=20}"
+                 Classes="PushButtonStyle"/> 
+            <RadioButton x:Name="FontSizeBtn24" Content="Aあ"
+                 GroupName="FontSizeGroup"
+                 FontSize="24"
+                 MinHeight="48"
+                 MinWidth="60"
+                 HorizontalContentAlignment="Center"
+                 Command="{Binding ChangeFontSizeCommand}"
+                 CommandParameter="{Binding Source='24', Converter={StaticResource StringToIntConverter}}"
+                 IsChecked="{Binding FontSize, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=24}"
+                 Classes="PushButtonStyle"/>   
+          </UniformGrid>
+        </StackPanel>
+
+        <!-- OK/Cancel -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+          <Button x:Name="btnOkay" Content="設定" HorizontalContentAlignment="Center" Margin="5" Width="80" IsDefault="True" Command="{Binding ApplyCommand}"/>
+          <Button x:Name="btnCancel" Content="取消" HorizontalContentAlignment="Center" Margin="5" Width="80" IsCancel="True" Command="{Binding CancelCommand}"/>
+        </StackPanel>
+
+      </StackPanel>
+    </Grid>
+  </Grid>
+</Window>

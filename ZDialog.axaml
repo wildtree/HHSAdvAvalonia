@@ -1,0 +1,68 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HHSAdvAvalonia.ZDialog"
+        Title="ZDialog"
+        SizeToContent="WidthAndHeight"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Foreground="{DynamicResource ForegroundBrush}"
+        Background="{DynamicResource BackgroundBrush}"
+        SystemDecorations="None"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        TransparencyLevelHint="AcrylicBlur,Transparent"
+        Opened="OnOpened">
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="32"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- タイトルバー -->
+    <Border Grid.Row="0"
+            CornerRadius="12"
+            Background="{DynamicResource TitleBarBackgroundBrush}">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ドラッグ領域 -->
+        <TextBlock Text="ZDialog"
+                   x:Name="TitleTextBlock"
+                   VerticalAlignment="Center"
+                   Margin="8,0"
+                   Foreground="{DynamicResource TitleBarForegroundBrush}"
+                   PointerPressed="TitleBar_PointerPressed"/>
+
+        <!-- ボタン群 -->
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button Content="—" Width="46" Background="Transparent" BorderThickness="0"
+                  Click="Minimize_Click"/>
+          <Button Content="□" Width="46" Background="Transparent" BorderThickness="0"
+                  Click="Maximize_Click"/>
+          <Button Content="×" Width="46" Background="Transparent" BorderThickness="0"
+                  Click="Close_Click"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- コンテンツ -->
+    <Grid Grid.Row="1" Background="{DynamicResource BackgroundBrush}">
+      <StackPanel Background="{DynamicResource BackgroundBrush}">
+        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="TextBox" FontSize="16"
+                 Margin="8" HorizontalAlignment="Center" BorderThickness="0"/>
+        <RadioButton x:Name="Option1" Content="RadioButton" GroupName="Selection" Tag="1" Margin="8,4"/>
+        <RadioButton x:Name="Option2" Content="RadioButton" GroupName="Selection" Tag="2" Margin="8,4"/>
+        <RadioButton x:Name="Option3" Content="RadioButton" GroupName="Selection" Tag="3" Margin="8,4"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+          <Button x:Name="Okay" Content="了解" Width="80" IsDefault="True" Margin="5"
+                  Click="Okay_Clicked"/>
+          <Button x:Name="Cancel" Content="取消" Width="80" IsCancel="True" Margin="5"/>
+        </StackPanel>
+      </StackPanel>
+    </Grid>
+  </Grid>
+</Window>

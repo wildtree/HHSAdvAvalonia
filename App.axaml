@@ -1,0 +1,38 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:HHSAdvAvalonia.Converters"
+             x:Class="HHSAdvAvalonia.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <Style Selector=":is(Control):light">
+            <Style.Resources>
+                <SolidColorBrush x:Key="PushButton.Background.Normal" Color="#EBEBEB"/>
+                <SolidColorBrush x:Key="PushButton.Border.Normal" Color="#DADADA"/>
+                <SolidColorBrush x:Key="PushButton.Foreground.Normal" Color="#7F7F7F"/>
+                <SolidColorBrush x:Key="PushButton.Background.Checked" Color="#0078D4"/>
+                <SolidColorBrush x:Key="PushButton.Foreground.Checked" Color="White"/>
+                <SolidColorBrush x:Key="PushButton.Background.PointerOver" Color="#F4F4F4"/>
+            </Style.Resources>
+        </Style>
+
+        <Style Selector=":is(Control):dark">
+            <Style.Resources>
+                <SolidColorBrush x:Key="PushButton.Background.Normal" Color="#2D2D2D"/>
+                <SolidColorBrush x:Key="PushButton.Border.Normal" Color="#4D4D4D"/>
+                <SolidColorBrush x:Key="PushButton.Foreground.Normal" Color="White"/>
+                <SolidColorBrush x:Key="PushButton.Background.Checked" Color="#0078D4"/>
+                <SolidColorBrush x:Key="PushButton.Foreground.Checked" Color="White"/>
+                <SolidColorBrush x:Key="PushButton.Background.PointerOver" Color="#383838"/>
+            </Style.Resources>
+        </Style>
+        <FluentTheme />
+        <StyleInclude Source="avares://HHSAdvAvalonia/CustomStyles.axaml"/>
+    </Application.Styles>
+    <Application.Resources>
+        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+        <converters:StringToIntConverter x:Key="StringToIntConverter"/>
+        <converters:IntToBooleanConverter x:Key="IntToBooleanConverter"/>
+    </Application.Resources>
+</Application>
