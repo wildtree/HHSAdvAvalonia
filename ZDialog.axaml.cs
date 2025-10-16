@@ -14,9 +14,12 @@ namespace HHSAdvAvalonia
         {
             "#1", "#2", "#3",
         };
-
         public int Selected { get; private set; } = 0;
-
+        public ZDialog()
+        {
+            InitializeComponent();
+            this.Opened += ZDialog_Loaded;
+        }
         public ZDialog(string title, string message, string[] labels)
         {
             InitializeComponent();
