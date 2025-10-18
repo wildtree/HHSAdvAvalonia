@@ -4,6 +4,7 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using System;
+using System.Reflection;
 
 namespace HHSAdvAvalonia
 {
@@ -14,9 +15,13 @@ namespace HHSAdvAvalonia
             public string IconImageFile =>
                 System.IO.Path.Combine(ZSystem.Instance.dataFolder, "icon.png");
 
-            public string AboutText =>
-@"High High School Adventure
-Version 1.0.4
+            public string AboutText = string.Empty;
+
+            public AboutContents()
+            {
+                var appVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "Unknown";
+                AboutText = $@"High High School Adventure
+{appVersion}
 
 PalmOS version: hiro © 2002-2004
 Android version: hiro © 2011-2025
@@ -57,6 +62,7 @@ HIROSHI YAMAMOTO, TAKAYOSHI KASHIWAGI
 Furniture KASHIWAGI
 
 ZAMA HIGH SCHOOL MICRO COMPUTER CIRCLE";
+            }
         }
 
         public ZAboutDialog()
