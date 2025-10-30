@@ -108,7 +108,7 @@ namespace HHSAdvAvalonia
                 double.PositiveInfinity           // maxHeight
             );
             var rtb = new RenderTargetBitmap(
-                new PixelSize((int)Math.Ceiling(layout.Width) + 4,
+                new PixelSize((int)Math.Ceiling(Owner.Bounds.Width), //(int)Math.Ceiling(layout.Width) + 4,
                               (int)Math.Ceiling(layout.Height) + 4));
 
             using (var ctx = rtb.CreateDrawingContext())
