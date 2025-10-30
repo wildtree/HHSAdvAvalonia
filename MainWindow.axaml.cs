@@ -169,7 +169,7 @@ look room
             InputArea.KeyDown += InputArea_KeyDown;
             await TitleScreen();
         }
-        public async void OnClosed(object? sender, EventArgs e)
+        public void OnClosed(object? sender, EventArgs e)
         {
             zsystem.SavePreferences();
         }

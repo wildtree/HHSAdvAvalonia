@@ -21,8 +21,6 @@ namespace HHSAdvAvalonia.ViewModels
 
         private int fontSize;
         private ThemeType themeType;
-        private int width;
-        private int height;
         public int ApplicationFontSize
         {
             get => fontSize;
