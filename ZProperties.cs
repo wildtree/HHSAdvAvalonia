@@ -20,6 +20,8 @@ namespace HHSAdvAvalonia
         {
             private ThemeType themeMode = ThemeType.Light;
             private int fontSize = 12;
+            private int width = 320;
+            private int height = 480;
             public string FontPath { get; set; } = @"C:\Windows\Fonts\YuGothR.ttc";
             public bool OpeningRoll { get; set; } = true;
             public bool PlaySound { get; set; } = true;
@@ -27,9 +29,20 @@ namespace HHSAdvAvalonia
                 get => themeMode;
                 set => themeMode = value;
             }
-            public int FontSize {
+            public int FontSize
+            {
                 get => fontSize;
                 set => fontSize = value;
+            }
+            public int Width
+            {
+                get => width;
+                set => width = value;
+            }
+            public int Height
+            {
+                get => height;
+                set => height = value;
             }
         }
 

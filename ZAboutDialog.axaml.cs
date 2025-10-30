@@ -32,6 +32,7 @@ PicoCalc version: hiro © 2025
 SDL version: hiro © 2025
 Windows version: hiro © 2025
 AvaloniaUI version: hiro © 2025
+.NET MAUI version: hiro © 2025
 
 - Project ZOBPlus -
 Hayami <hayami@zob.jp>, Exit <exit@zob.jp>, ezumi <ezumi@zob.jp>

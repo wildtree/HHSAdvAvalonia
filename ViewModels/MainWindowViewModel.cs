@@ -21,6 +21,8 @@ namespace HHSAdvAvalonia.ViewModels
 
         private int fontSize;
         private ThemeType themeType;
+        private int width;
+        private int height;
         public int ApplicationFontSize
         {
             get => fontSize;
@@ -28,8 +30,18 @@ namespace HHSAdvAvalonia.ViewModels
         }
         public ThemeType ApplicationThemeMode
         {
-            get => themeType; 
-            set => this.RaiseAndSetIfChanged(ref themeType, value); 
+            get => themeType;
+            set => this.RaiseAndSetIfChanged(ref themeType, value);
+        }        
+        public int ApplicationWidth
+        {
+            get => settingsService.Width;
+            set => settingsService.Width = value;
+        }
+        public int ApplicationHeight
+        {
+            get => settingsService.Height;
+            set => settingsService.Height = value;
         }
 
         // コンストラクタでサービスを受け取る
@@ -39,6 +51,8 @@ namespace HHSAdvAvalonia.ViewModels
             ZSystem.Instance.LoadPreferences();
             ApplicationFontSize = ZSystem.Instance.Properties.Attrs.FontSize;
             ApplicationThemeMode = ZSystem.Instance.Properties.Attrs.ThemeMode;
+            ApplicationWidth = ZSystem.Instance.Properties.Attrs.Width;
+            ApplicationHeight = ZSystem.Instance.Properties.Attrs.Height;
 
             // ★★★ サービスの変更を監視し、Viewに通知（プロキシ） ★★★
             // これにより、PreferencesでFontSizeが変更されると、
@@ -47,6 +61,10 @@ namespace HHSAdvAvalonia.ViewModels
                 ApplicationThemeMode = mode);
             SettingsService.WhenAnyValue(x => x.FontSize).Subscribe(size =>
                 ApplicationFontSize = size);
+            SettingsService.WhenAnyValue(x => x.Width).Subscribe(width =>
+                ApplicationWidth = width);
+            SettingsService.WhenAnyValue(x => x.Height).Subscribe(height =>
+                ApplicationHeight = height);
         }
     }
 }

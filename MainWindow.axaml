@@ -8,8 +8,9 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}"
         Title="ハイハイスクールアドベンチャー"
         Icon="/assets/isako.ico"
-        Width="320" Height="480"
-        Opened="OnOpened">
+        Width="{Binding ApplicationWidth, Mode=TwoWay}" Height="{Binding ApplicationHeight, Mode=TwoWay}"
+        Opened="OnOpened"
+        Closed="OnClosed">
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
@@ -29,13 +30,13 @@
       </Menu>
 
       <!-- メインコンテンツ -->
-      <Grid Margin="10" RowDefinitions="Auto, Auto, *, Auto">
+      <Grid Margin="10" RowDefinitions="*, Auto, *">
         <!-- プログラムで生成したビットマップを表示する領域 -->
-        <Image x:Name="Screen" Width="320" Height="240" Grid.Row="0"/>
+        <Image x:Name="Screen" Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
         <!-- 一行入力ウィジェット -->
         <StackPanel Grid.Row="1" Spacing="10" Margin="0, 5, 0, 5">
-          <TextBox x:Name="InputArea" Watermark="どうする？" Width="300"/>
+          <TextBox x:Name="InputArea" Watermark="どうする？" HorizontalAlignment="Stretch"/>
           <TextBlock x:Name="HitAnyKey" Text="何かキーを押してください..." IsVisible="False" HorizontalAlignment="Center"/>
         </StackPanel>
 

@@ -11,6 +11,8 @@ namespace HHSAdvAvalonia.Services
         // 初期値
         private int fontSize;
         private ThemeType themeMode;
+        private int width;
+        private int height;
         public int FontSize
         {
             get => fontSize;
@@ -32,12 +34,33 @@ namespace HHSAdvAvalonia.Services
             }
         }
 
+        public int Width
+        {
+            get => width;
+            set
+            {
+                ZSystem.Instance.Properties.Attrs.Width = value;
+                this.RaiseAndSetIfChanged(ref width, value);
+            }
+        }
+        public int Height
+        {
+            get => height;
+            set
+            {
+                ZSystem.Instance.Properties.Attrs.Height = value;
+                this.RaiseAndSetIfChanged(ref height, value);
+            }
+        }
+
         // コンストラクタで変更通知を監視し、設定を自動保存するロジックを実装
         public AppSettingsService()
         {
             ZSystem.Instance.LoadPreferences();
             fontSize = ZSystem.Instance.Properties.Attrs.FontSize;
             themeMode = ZSystem.Instance.Properties.Attrs.ThemeMode;
+            width = ZSystem.Instance.Properties.Attrs.Width;
+            height = ZSystem.Instance.Properties.Attrs.Height;
             //ZSystem.Instance.Properties.Attrs.WhenAnyValue(x => x.FontSize)
             //    .Subscribe(_ =>
             //        this.RaisePropertyChanged(nameof(FontSize)));
@@ -47,7 +70,6 @@ namespace HHSAdvAvalonia.Services
         }
         
         // 永続化ロジック（ファイル書き込みなど）
-        public void SaveSettings() => ZSystem.Instance.SavePreferences();
-        
+        public void SaveSettings() => ZSystem.Instance.SavePreferences();       
     }
 }
