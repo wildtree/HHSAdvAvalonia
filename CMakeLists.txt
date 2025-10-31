@@ -33,7 +33,7 @@ Section: utils
 Priority: optional
 Architecture: amd64
 Maintainer: Hiroyuki Araki <wildtree@gmail.com>
-Depends: vlc (>= 3.0), libvlc-bin (>= 3.0), libvlc5 (>= 3.0)
+Depends: vlc (>= 3.0), libvlc-bin (>= 3.0), libvlc5 (>= 3.0), libvlc-dev (>= 3.0)
 Description: High High School Adventure for AvaloniaUI
  An implementation of 'High High School Adventure' with AvaloniaUI.
 ")
